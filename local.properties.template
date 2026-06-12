@@ -1,0 +1,11 @@
+# Copy to `local.properties` (which is git-ignored). Android Studio also writes sdk.dir here.
+# sdk.dir=C:\\Users\\you\\AppData\\Local\\Android\\Sdk
+
+# Optional: pre-bake online ASR credentials as BuildConfig defaults.
+# Leave blank to enter them at runtime in the app's Settings screen instead.
+XFYUN_APP_ID=
+XFYUN_API_KEY=
+DASHSCOPE_API_KEY=
+VOLC_APP_ID=
+VOLC_ACCESS_KEY=
+VOLC_RESOURCE_ID=volc.bigasr.sauc.duration

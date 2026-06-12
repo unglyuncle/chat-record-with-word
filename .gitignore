@@ -1,0 +1,20 @@
+*.iml
+.gradle/
+/local.properties
+/.idea/
+/.kotlin/
+.DS_Store
+/build/
+/captures/
+.externalNativeBuild/
+.cxx/
+local.properties
+
+# Build outputs
+/app/build/
+
+# sherpa-onnx native artifact is fetched via scripts/fetch-sherpa-aar.* (not committed)
+/app/libs/*.aar
+/app/libs/*.jar
+
+# ASR models are downloaded at runtime into the app's filesDir, never into the repo
