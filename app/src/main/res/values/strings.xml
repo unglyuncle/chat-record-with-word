@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name">会议转写</string>
+
+    <!-- Navigation / screens -->
+    <string name="title_transcribe">实时转写</string>
+    <string name="title_settings">设置</string>
+
+    <!-- Recording controls -->
+    <string name="action_start">开始录音</string>
+    <string name="action_stop">停止</string>
+    <string name="action_pause">暂停</string>
+    <string name="action_resume">继续</string>
+    <string name="status_idle">就绪</string>
+    <string name="status_initializing">引擎初始化中…</string>
+    <string name="status_listening">聆听中</string>
+    <string name="status_recording">录音中</string>
+    <string name="status_finalizing">正在生成说话人标注…</string>
+    <string name="status_error">出错</string>
+
+    <!-- Transcript -->
+    <string name="transcript_empty">点击下方按钮开始录音，转写文字会实时出现在这里。</string>
+    <string name="resume_autoscroll">回到底部</string>
+    <string name="speaker_label">说话人 %1$d</string>
+    <string name="speaker_unknown">说话人 ?</string>
+
+    <!-- Settings: engine -->
+    <string name="settings_engine_section">转写方式</string>
+    <string name="settings_engine_hint">在线方式需要联网并填写密钥；离线方式首次使用要先下载语音包。</string>
+    <string name="settings_offline_model_section">离线语音包</string>
+    <string name="settings_offline_model_hint">不确定就选“基础识别”。想要更准可以选大一些的语音包；想边说边更快出字，选“响应更快”。</string>
+    <string name="settings_credentials_section">在线密钥</string>
+    <string name="settings_models_section">离线语音包管理</string>
+    <string name="settings_diarization_section">区分说话人</string>
+
+    <!-- Engine names -->
+    <string name="engine_sherpa_offline">离线识别（不联网）</string>
+    <string name="engine_xfyun">讯飞在线识别</string>
+    <string name="engine_ali">阿里在线识别</string>
+    <string name="engine_volc">火山在线识别</string>
+
+    <!-- Offline model names -->
+    <string name="offline_model_sensevoice">基础识别（推荐）</string>
+    <string name="offline_model_paraformer">普通话更准</string>
+    <string name="offline_model_zipformer_ctc">响应更快</string>
+    <string name="offline_model_zipformer_ctc_xlarge">响应更快（大包）</string>
+    <string name="offline_model_funasr_nano">中文更准</string>
+    <string name="offline_model_qwen3_asr">中文更准（大包）</string>
+
+    <!-- Model download -->
+    <string name="model_download">下载</string>
+    <string name="model_downloaded">已就绪</string>
+    <string name="model_downloading">下载中 %1$d%%</string>
+    <string name="model_delete">删除</string>
+    <string name="model_redownload">重新下载</string>
+
+    <!-- Permissions -->
+    <string name="perm_mic_rationale">需要麦克风权限才能录音转写。</string>
+    <string name="perm_notif_rationale">需要通知权限以在后台持续录音时显示状态。</string>
+    <string name="perm_grant">去授权</string>
+
+    <!-- Notification -->
+    <string name="notif_channel_name">会议录音</string>
+    <string name="notif_channel_desc">录音转写进行中的前台通知</string>
+    <string name="notif_recording_title">正在录音转写</string>
+    <string name="notif_recording_text">点击返回应用 · %1$s</string>
+</resources>
