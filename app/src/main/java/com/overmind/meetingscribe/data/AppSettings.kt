@@ -25,6 +25,7 @@ data class AppSettings(
     val vadThreshold: Float = 0.22f,
     /** Offline input gain multiplier applied to captured PCM before VAD/ASR. 1.0 = unchanged. */
     val micGain: Float = 4.0f,
+    val recordingPreset: RecordingEnvironmentPreset = RecordingEnvironmentPreset.QUIET_MEETING,
     val recordingFormat: RecordingFormat = RecordingFormat.M4A_AAC,
     val recordingAudioSourceMode: RecordingAudioSourceMode = RecordingAudioSourceMode.CLEAN,
     val recordingAgc: Boolean = false,

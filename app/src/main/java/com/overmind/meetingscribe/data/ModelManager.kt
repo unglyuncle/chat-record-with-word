@@ -15,7 +15,7 @@ class ModelManager(context: Context) {
     fun isReady(component: ModelComponent): Boolean =
         component.expectedFiles.all { rel ->
             val f = File(modelsDir, rel)
-            f.exists() && f.length() > 0
+            f.exists() && f.length() >= (component.minBytesByFile[rel] ?: 1L)
         }
 
     private fun absolute(rel: String) = File(modelsDir, rel).absolutePath
@@ -41,11 +41,11 @@ class ModelManager(context: Context) {
     fun segmentationModel() = absolute(ModelComponent.PYANNOTE_SEG.expectedFiles[0])
     fun embeddingModel() = absolute(ModelComponent.CAMPP_EMBED.expectedFiles[0])
 
-    /** ASR + VAD components for a given offline model (Paraformer also needs punctuation). */
+    /** ASR + VAD components for a given offline model. Punctuation is optional post-processing. */
     fun requiredForAsr(kind: OfflineModelKind): List<ModelComponent> = when (kind) {
         OfflineModelKind.SENSE_VOICE -> listOf(ModelComponent.SENSE_VOICE, ModelComponent.SILERO_VAD)
         OfflineModelKind.PARAFORMER ->
-            listOf(ModelComponent.PARAFORMER, ModelComponent.SILERO_VAD, ModelComponent.PUNCT_CT)
+            listOf(ModelComponent.PARAFORMER, ModelComponent.SILERO_VAD)
         OfflineModelKind.ZIPFORMER_CTC -> listOf(ModelComponent.ZIPFORMER_CTC)
         OfflineModelKind.ZIPFORMER_CTC_XLARGE -> listOf(ModelComponent.ZIPFORMER_CTC_XLARGE)
         OfflineModelKind.FUNASR_NANO -> listOf(ModelComponent.FUNASR_NANO, ModelComponent.SILERO_VAD)

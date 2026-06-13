@@ -71,7 +71,10 @@ class ModelDownloader(private val manager: ModelManager) {
                 }
                 if (!manager.isReady(component)) error("下载后文件校验失败，请重试")
                 onProgress(1f)
-            }.onFailure { tmp.delete() }
+            }.onFailure {
+                tmp.delete()
+                manager.delete(component)
+            }
         }
 
     private fun extractTarBz2(archive: File, outDir: File) {

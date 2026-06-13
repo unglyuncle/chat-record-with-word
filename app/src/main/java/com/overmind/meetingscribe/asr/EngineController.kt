@@ -123,7 +123,7 @@ object EngineController : ASRListener {
      */
     suspend fun ensureEngine(settings: AppSettings, force: Boolean = false): Result<Unit> =
         switchMutex.withLock {
-            if (!force && currentType == settings.engine && engine != null) {
+            if (!force && currentSettings == settings && engine != null) {
                 return@withLock Result.success(Unit)
             }
             engine?.let { old ->
@@ -189,6 +189,7 @@ object EngineController : ASRListener {
 
         engine = null
         currentType = null
+        currentSettings = null
         currentHistoryId = null
         currentRecordingPath = null
         historyDirty = false

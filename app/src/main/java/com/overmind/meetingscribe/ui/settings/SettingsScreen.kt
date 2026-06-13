@@ -50,6 +50,7 @@ import com.overmind.meetingscribe.asr.offline.OfflineModelKind
 import com.overmind.meetingscribe.audio.RecordingAudioSourceMode
 import com.overmind.meetingscribe.audio.RecordingFormat
 import com.overmind.meetingscribe.data.ModelComponent
+import com.overmind.meetingscribe.data.RecordingEnvironmentPreset
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -107,6 +108,20 @@ fun SettingsScreen(
                         selected = settings.offlineModel == kind,
                         title = kind.modelName,
                         onClick = { vm.setOfflineModel(kind) },
+                    )
+                }
+            }
+
+            SectionCard(
+                title = "使用场景预设",
+                hint = "先按环境选一个模式即可；下面的高级参数仍然可以手动微调，改动后会变成自定义。",
+            ) {
+                RecordingEnvironmentPreset.entries.forEach { preset ->
+                    PresetRow(
+                        selected = settings.recordingPreset == preset,
+                        title = preset.title,
+                        description = preset.description,
+                        onClick = { vm.setRecordingPreset(preset) },
                     )
                 }
             }
@@ -284,6 +299,33 @@ private fun SelectableRow(selected: Boolean, title: String, onClick: () -> Unit)
         RadioButton(selected = selected, onClick = onClick)
         Spacer(Modifier.width(8.dp))
         Text(title, style = MaterialTheme.typography.bodyLarge)
+    }
+}
+
+@Composable
+private fun PresetRow(
+    selected: Boolean,
+    title: String,
+    description: String,
+    onClick: () -> Unit,
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .selectable(selected = selected, onClick = onClick)
+            .padding(vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        RadioButton(selected = selected, onClick = onClick)
+        Spacer(Modifier.width(8.dp))
+        Column(modifier = Modifier.weight(1f)) {
+            Text(title, style = MaterialTheme.typography.bodyLarge)
+            Text(
+                text = description,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
     }
 }
 

@@ -118,7 +118,7 @@ class SherpaOfflineEngine(
                 recognizer = OfflineRecognizer(assetManager = null, config = buildRecognizerConfig())
             }
 
-            if (kind.usesExternalPunctuation && models.isReady(ModelComponent.PUNCT_CT)) {
+            if (!kind.isStreaming && kind.usesExternalPunctuation && models.isReady(ModelComponent.PUNCT_CT)) {
                 punct = OfflinePunctuation(
                     assetManager = null,
                     config = OfflinePunctuationConfig(
@@ -144,7 +144,7 @@ class SherpaOfflineEngine(
 
     private fun modelNotReadyMessage(kind: OfflineModelKind): String = when (kind) {
         OfflineModelKind.SENSE_VOICE -> "离线模型未就绪，请在设置中下载 SenseVoice 与 VAD 模型"
-        OfflineModelKind.PARAFORMER -> "离线模型未就绪，请在设置中下载 Paraformer、VAD 与标点模型"
+        OfflineModelKind.PARAFORMER -> "离线模型未就绪，请在设置中下载 Paraformer 与 VAD 模型"
         OfflineModelKind.ZIPFORMER_CTC -> "离线模型未就绪，请在设置中下载 Zipformer-CTC 流式模型"
         OfflineModelKind.ZIPFORMER_CTC_XLARGE -> "离线模型未就绪，请在设置中下载 Zipformer-CTC XLarge 流式模型"
         OfflineModelKind.FUNASR_NANO -> "离线模型未就绪，请在设置中下载 FunASR Nano 与 VAD 模型"

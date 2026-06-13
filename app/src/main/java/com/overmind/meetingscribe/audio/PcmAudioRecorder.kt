@@ -55,8 +55,8 @@ class PcmAudioRecorder(
                     start()
                 }
                 true
-            } catch (e: Exception) {
-                onError("启动录音失败: ${e.message}")
+            } catch (t: Throwable) {
+                onError("启动录音失败: ${t.message}")
                 stop()
                 false
             }
@@ -108,9 +108,9 @@ class PcmAudioRecorder(
 
     private fun audioSources(): List<Int> {
         val clean = buildList {
-            add(MediaRecorder.AudioSource.UNPROCESSED)
             add(MediaRecorder.AudioSource.MIC)
             add(MediaRecorder.AudioSource.VOICE_RECOGNITION)
+            add(MediaRecorder.AudioSource.UNPROCESSED)
         }
         return when (sourceMode) {
             RecordingAudioSourceMode.CLEAN -> clean

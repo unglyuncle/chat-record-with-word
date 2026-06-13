@@ -40,6 +40,7 @@ class SettingsRepository(context: Context) {
         diarizationThreshold = this[Keys.DIAR_THRESHOLD] ?: 0.5f,
         vadThreshold = farFieldDefault(this[Keys.VAD_THRESHOLD], oldDefault = 0.35f, newDefault = 0.22f),
         micGain = farFieldDefault(this[Keys.MIC_GAIN], oldDefault = 1.5f, newDefault = 4.0f),
+        recordingPreset = enumOrDefault(this[Keys.RECORDING_PRESET], RecordingEnvironmentPreset.QUIET_MEETING),
         recordingFormat = enumOrDefault(this[Keys.RECORDING_FORMAT], RecordingFormat.M4A_AAC),
         recordingAudioSourceMode = enumOrDefault(this[Keys.RECORDING_SOURCE], RecordingAudioSourceMode.CLEAN),
         recordingAgc = this[Keys.RECORDING_AGC] ?: false,
@@ -61,6 +62,7 @@ class SettingsRepository(context: Context) {
         prefs[Keys.DIAR_THRESHOLD] = diarizationThreshold
         prefs[Keys.VAD_THRESHOLD] = vadThreshold
         prefs[Keys.MIC_GAIN] = micGain
+        prefs[Keys.RECORDING_PRESET] = recordingPreset.name
         prefs[Keys.RECORDING_FORMAT] = recordingFormat.name
         prefs[Keys.RECORDING_SOURCE] = recordingAudioSourceMode.name
         prefs[Keys.RECORDING_AGC] = recordingAgc
@@ -88,6 +90,7 @@ class SettingsRepository(context: Context) {
         val DIAR_THRESHOLD = floatPreferencesKey("diarization_threshold")
         val VAD_THRESHOLD = floatPreferencesKey("vad_threshold")
         val MIC_GAIN = floatPreferencesKey("mic_gain")
+        val RECORDING_PRESET = stringPreferencesKey("recording_preset")
         val RECORDING_FORMAT = stringPreferencesKey("recording_format")
         val RECORDING_SOURCE = stringPreferencesKey("recording_source")
         val RECORDING_AGC = booleanPreferencesKey("recording_agc")

@@ -11,6 +11,7 @@ import com.overmind.meetingscribe.data.AppSettings
 import com.overmind.meetingscribe.data.ModelComponent
 import com.overmind.meetingscribe.data.ModelDownloader
 import com.overmind.meetingscribe.data.ModelManager
+import com.overmind.meetingscribe.data.RecordingEnvironmentPreset
 import com.overmind.meetingscribe.data.SettingsRepository
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -73,14 +74,22 @@ class SettingsViewModel(app: Application) : AndroidViewModel(app) {
 
     fun setEngine(engine: EngineType) = edit { it.copy(engine = engine) }
     fun setOfflineModel(kind: OfflineModelKind) = edit { it.copy(offlineModel = kind) }
-    fun setLiveDiarization(enabled: Boolean) = edit { it.copy(liveDiarization = enabled) }
-    fun setPostDiarization(enabled: Boolean) = edit { it.copy(postDiarization = enabled) }
-    fun setDiarizationThreshold(value: Float) = edit { it.copy(diarizationThreshold = value) }
-    fun setVadThreshold(value: Float) = edit { it.copy(vadThreshold = value) }
-    fun setMicGain(value: Float) = edit { it.copy(micGain = value) }
+    fun setRecordingPreset(preset: RecordingEnvironmentPreset) = edit { preset.applyTo(it) }
+    fun setLiveDiarization(enabled: Boolean) =
+        edit { it.copy(liveDiarization = enabled, recordingPreset = RecordingEnvironmentPreset.CUSTOM) }
+    fun setPostDiarization(enabled: Boolean) =
+        edit { it.copy(postDiarization = enabled, recordingPreset = RecordingEnvironmentPreset.CUSTOM) }
+    fun setDiarizationThreshold(value: Float) =
+        edit { it.copy(diarizationThreshold = value, recordingPreset = RecordingEnvironmentPreset.CUSTOM) }
+    fun setVadThreshold(value: Float) =
+        edit { it.copy(vadThreshold = value, recordingPreset = RecordingEnvironmentPreset.CUSTOM) }
+    fun setMicGain(value: Float) =
+        edit { it.copy(micGain = value, recordingPreset = RecordingEnvironmentPreset.CUSTOM) }
     fun setRecordingFormat(value: RecordingFormat) = edit { it.copy(recordingFormat = value) }
-    fun setRecordingAudioSourceMode(value: RecordingAudioSourceMode) = edit { it.copy(recordingAudioSourceMode = value) }
-    fun setRecordingAgc(enabled: Boolean) = edit { it.copy(recordingAgc = enabled) }
+    fun setRecordingAudioSourceMode(value: RecordingAudioSourceMode) =
+        edit { it.copy(recordingAudioSourceMode = value, recordingPreset = RecordingEnvironmentPreset.CUSTOM) }
+    fun setRecordingAgc(enabled: Boolean) =
+        edit { it.copy(recordingAgc = enabled, recordingPreset = RecordingEnvironmentPreset.CUSTOM) }
 
     fun setXfyunAppId(v: String) = edit { it.copy(xfyunAppId = v.trim()) }
     fun setXfyunApiKey(v: String) = edit { it.copy(xfyunApiKey = v.trim()) }

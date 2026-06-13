@@ -13,6 +13,7 @@ enum class ModelComponent(
     val archive: Boolean,
     val expectedFiles: List<String>,
     val approxSize: String,
+    val minBytesByFile: Map<String, Long> = emptyMap(),
 ) {
     SENSE_VOICE(
         displayName = "SenseVoice Small int8",
@@ -93,6 +94,10 @@ enum class ModelComponent(
             "sherpa-onnx-punct-ct-transformer-zh-en-vocab272727-2024-04-12/model.onnx",
         ),
         approxSize = "≈ 280 MB",
+        minBytesByFile = mapOf(
+            "sherpa-onnx-punct-ct-transformer-zh-en-vocab272727-2024-04-12/model.onnx" to
+                270_000_000L,
+        ),
     ),
     PYANNOTE_SEG(
         displayName = "Pyannote speaker segmentation",
